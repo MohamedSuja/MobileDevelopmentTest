@@ -29,9 +29,7 @@ const Login: React.FC<HomeScreenProps> = (props) => {
          value={password}
          onChangeText={setPassword}
          style={styles.passwordInput}
-        />
-
-        
+        />        
        
       </View>
 
