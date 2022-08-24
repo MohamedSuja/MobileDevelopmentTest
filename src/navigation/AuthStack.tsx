@@ -1,7 +1,5 @@
-import { View, Text } from 'react-native'
 import React from 'react'
 import Login from '../screens/Login';
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '../screens/Home';
 import { RootStackParamList } from './Types';
@@ -9,17 +7,14 @@ import { RootStackParamList } from './Types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const MyStack = () => {
-    return (
-      <NavigationContainer>
+const AuthStack = () => {
+    return (      
         <Stack.Navigator  
            initialRouteName="Login"
            screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Login" component={Login} /> 
-          <Stack.Screen name="Home" component={Home} />                   
-        </Stack.Navigator>
-      </NavigationContainer>
+          <Stack.Screen name="Login" component={Login} />                  
+        </Stack.Navigator>    
    )
 }
 
-export default MyStack
+export default AuthStack
