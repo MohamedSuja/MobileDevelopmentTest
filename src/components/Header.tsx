@@ -5,16 +5,18 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 type HeaderProps ={
     onPress(): void
+    iconName: string
+    title: string
 }
 const Header = (props: HeaderProps) => {
-    const {onPress} = props
+    const {onPress,iconName,title} = props
     
   return (
     <View style={styles.headerContainer}>
        <TouchableOpacity onPress={onPress} style={styles.icon}>
-          <Icon name="navicon" size={25} color="#fff" />
+          <Icon name={iconName} size={25} color="#fff" />
        </TouchableOpacity>      
-      <Text style={styles.title}>Home</Text>
+      <Text style={styles.title}>{title}</Text>
     </View>
   )
 }
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
         color:'#fff',
         fontSize:30,
         fontWeight:'700',
-       // marginTop:10
+        marginLeft:55
     },
     icon:{
       margin:20

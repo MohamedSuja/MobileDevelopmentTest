@@ -8,10 +8,10 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import store from '../redux/store/Store';
 import { LoginForm } from '../redux/actions/UserActions';
 
-type HomeScreenProps = NativeStackScreenProps<RootStackParamList,'Register'>
+type RegisterScreenProps = NativeStackScreenProps<RootStackParamList,'Register'>
 
 
-const Login: React.FC<HomeScreenProps> = (props) => {
+const Login: React.FC<RegisterScreenProps> = (props) => {
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
 
@@ -24,7 +24,7 @@ const Login: React.FC<HomeScreenProps> = (props) => {
   return (
     <View  style={styles.container}>
        <StatusBar translucent={false} />
-      <Text style={styles.title}>LogIn Screen</Text>
+      <Text style={styles.title}>Mobile Development Test</Text>
       <View style={styles.textinputContainer}>
         <TextareaItem        
          placeholder='Email'

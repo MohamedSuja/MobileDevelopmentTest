@@ -1,6 +1,6 @@
 import * as loginActions from "../constants/UserConstants";
 
-export default function reducer(
+export default function AuthReducer(
   state = { loginStatus: "PENDING" },
   action: {
     type: string;
