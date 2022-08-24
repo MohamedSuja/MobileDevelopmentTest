@@ -1,5 +1,9 @@
 
 export type RootStackParamList = {
+    Login: undefined;
+    Register:undefined;
+
     Home: undefined;
-    Login:undefined;
+    AddCompanies: undefined;
+    Settings: undefined;
 }

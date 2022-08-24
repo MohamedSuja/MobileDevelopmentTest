@@ -7,11 +7,13 @@ import {RootStackParamList} from'../navigation/Types'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import store from '../redux/store/Store';
 import { LoginForm } from '../redux/actions/UserActions';
+import { StepForwardOutlined } from '@ant-design/icons';
+
 
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList,'Register'>
 
 
-const Login: React.FC<HomeScreenProps> = (props) => {
+const Register: React.FC<HomeScreenProps> = (props) => {
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
 
@@ -24,7 +26,7 @@ const Login: React.FC<HomeScreenProps> = (props) => {
   return (
     <View  style={styles.container}>
        <StatusBar translucent={false} />
-      <Text style={styles.title}>LogIn Screen</Text>
+      <Text style={styles.title}>Mobile Development Test</Text>
       <View style={styles.textinputContainer}>
         <TextareaItem        
          placeholder='Email'
@@ -40,14 +42,9 @@ const Login: React.FC<HomeScreenProps> = (props) => {
          onChangeText={setPassword}
          style={styles.passwordInput}
         />      
-       <TouchableOpacity
-         style={styles.signUpButton}
-         onPress={() => props.navigation.push('Register')}>
-         <Text style={styles.signUpButtonText}>
-          Don't have an acount? SignIn here
-         </Text>
-       </TouchableOpacity>
-       
+
+        <StepForwardOutlined />
+
       </View>
 
       <Button 
@@ -55,7 +52,7 @@ const Login: React.FC<HomeScreenProps> = (props) => {
        type='primary'
        onPress={Login}
        >
-        SignIn</Button>
+        SignUp</Button>
      
     </View>
   )
@@ -104,4 +101,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Login
+export default Register
