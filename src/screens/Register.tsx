@@ -7,7 +7,6 @@ import {RootStackParamList} from'../navigation/Types'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import store from '../redux/store/Store';
 import { LoginForm } from '../redux/actions/UserActions';
-import { StepForwardOutlined } from '@ant-design/icons';
 
 
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList,'Register'>
