@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet ,TextInput, StatusBar, TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet ,TextInput, StatusBar, TouchableOpacity, ScrollView} from 'react-native';
 import React, { useState } from 'react';
 
 import { ScreenWidth } from '../functions/Scale';
@@ -10,17 +10,17 @@ import { LoginForm } from '../redux/actions/UserActions';
 import Icon from 'react-native-vector-icons/Entypo';
 
 
-type HomeScreenProps = NativeStackScreenProps<RootStackParamList,'Register'>
+type ScreenProps = NativeStackScreenProps<RootStackParamList>
 
 
-const Register: React.FC<HomeScreenProps> = (props) => {
-  const [firstName,setirstName] = useState('')
+const Register: React.FC<ScreenProps> = (props) => {
+  const [firstName,setfirstName] = useState('')
   const [lastName,setLastName] = useState('')
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
 
   const { dispatch } = store;
-  const Login = (event: React.SyntheticEvent) =>{
+  const register = (event: React.SyntheticEvent) =>{
     event.preventDefault();
     dispatch(LoginForm(email, password));
   }
@@ -28,44 +28,51 @@ const Register: React.FC<HomeScreenProps> = (props) => {
   return (
     <View  style={styles.container}>
        <StatusBar translucent={false} />
-       <TouchableOpacity style={styles.backIcon} onPress={()=>props.navigation.push('Login')}>
+       <TouchableOpacity style={styles.backIcon} onPress={()=>props.navigation.goBack()}>
           <Icon name="chevron-left" size={45} color="#3e86fa" />
        </TouchableOpacity>   
+       
       <Text style={styles.title}>Mobile Development Test</Text>
-      <View style={styles.textinputContainer}>
-     
+      <ScrollView horizontal={false} >
+       <View style={styles.textinputContainer}>
+        <Text style={styles.text}>First Name</Text>
         <TextareaItem        
-         placeholder='First Name'      
+         placeholder='Enter Your First Name'      
          value={firstName}
-         onChangeText={setirstName}
+         onChangeText={setfirstName}
          style={styles.textInput}/>
 
+        <Text style={styles.text}>Last Name</Text>
         <TextareaItem        
-         placeholder='Last Name'
+         placeholder='Enter Your Last Name'
          value={lastName}
          onChangeText={setLastName}
          style={styles.textInput}/>
 
+        <Text style={styles.text}>Email Address</Text>
         <TextareaItem        
-         placeholder='Email'
+         placeholder='Enter Your Email Address'
          keyboardType='email-address' 
          value={email}
          onChangeText={setEmail}
          style={styles.textInput}/>
 
+         <Text style={styles.text}>Password</Text>
          <TextareaItem      
-         placeholder='Password'
+         placeholder='Enter Your Password'
          secureTextEntry={true}
          value={password}
          onChangeText={setPassword}
          style={styles.passwordInput}
         />      
-      </View>
+       </View>
+      </ScrollView>
+      
 
       <Button 
        style={styles.submitButton} 
        type='primary'
-       onPress={Login}
+    
        >
         SignUp</Button>
      
@@ -89,35 +96,33 @@ const styles = StyleSheet.create({
     margin:0
   },
   textinputContainer:{
-    width:ScreenWidth-20,
-    margin:20,
-    height:200
+    width:ScreenWidth,
+    marginTop:10
+   // height:200
+  },
+  text:{
+    fontSize:20,
+    marginBottom:10,
+    marginLeft:5
   },
   textInput:{
     borderColor:'#000',
     borderWidth:1,
-    marginTop:10,
+    marginBottom:15,
+    width:ScreenWidth-10,
+    alignSelf:'center'
   },
   passwordInput:{
-    marginTop:10,
     borderColor:'#000',
     borderWidth:1,
-    marginBottom:10
+    marginBottom:15,
+    width:ScreenWidth-10,
+    alignSelf:'center'
   },
   submitButton:{
-    width: ScreenWidth-20,
-    position:'absolute',
+    width: ScreenWidth-20,  
     bottom:10
   },
-  signUpButton: {
-    marginVertical: 35,
-  },
-  signUpButtonText: {
-    fontSize: 18,
-    fontWeight: '500',
-    color: '#2e64e5',
-    fontFamily: 'Lato-Regular',
-  }
 
 })
 

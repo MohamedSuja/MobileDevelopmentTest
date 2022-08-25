@@ -2,9 +2,15 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const FloatingActionButton = () => {
+
+type Props ={
+  onPress(): void
+}
+const FloatingActionButton = (props: Props) => {
+  const {onPress} = props
   return (
     <TouchableOpacity 
+          onPress={onPress}
           style={styles.iconContainer} 
           >
           <Icon name="add" size={45} color="#fff" />

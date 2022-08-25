@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet, StatusBar, TouchableOpacity, } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, TouchableOpacity, FlatList, } from 'react-native'
 import React, { useRef, useState } from 'react'
-import { Button, Drawer } from '@ant-design/react-native'
+import { Button, Card, Drawer } from '@ant-design/react-native'
 import Header from '../components/Header';
 import store from '../redux/store/Store';
 import { LogOut } from '../redux/actions/UserActions';
@@ -61,10 +61,24 @@ const Home : React.FC<SettingsScreenProps> = (props) => {
       <StatusBar translucent={true} backgroundColor={'transparent'} />
       <Header iconName='navicon' title='Home' onPress={()=>setOpenDrawer(true)}/>     
       
-      <Button onPress={LogOutFunction}>
+      {/* <Button onPress={LogOutFunction}>
         test
-      </Button>
-      <FloatingActionButton/>
+      </Button> */}
+      {/* <FlatList 
+        numColumns={1}
+        data={data}
+        renderItem={({})=>()}
+      /> */}
+      <Card>          
+        <Card.Body>
+          <View style={{ height: 42 }}>
+            <Text style={{ marginLeft: 16 }}>Company Name</Text>
+          </View>
+        </Card.Body>
+        <Card.Footer content="Company ID" extra="Company Location" />
+      </Card>
+      
+      <FloatingActionButton onPress={()=>props.navigation.push('AddCompany')}/>
     </Drawer>
   )
 }
@@ -82,7 +96,8 @@ const styles = StyleSheet.create({
   },
   iconContainer:{
     position:'absolute',
-    right:0
+    right:0,
+    top:10
   },
   name:{
     fontSize:28,
@@ -106,3 +121,4 @@ const styles = StyleSheet.create({
 })
 
 export default Home
+

@@ -26,15 +26,17 @@ const Login: React.FC<RegisterScreenProps> = (props) => {
        <StatusBar translucent={false} />
       <Text style={styles.title}>Mobile Development Test</Text>
       <View style={styles.textinputContainer}>
+        <Text style={styles.text}>Email Address</Text>
         <TextareaItem        
-         placeholder='Email'
+         placeholder='Enter Your Email Address'
          keyboardType='email-address' 
          value={email}
          onChangeText={setEmail}
          style={styles.emailInput}/>
-
+         
+         <Text style={styles.text}>Password</Text>
          <TextareaItem      
-         placeholder='Password'
+         placeholder='Enter Your Password'
          secureTextEntry={true}
          value={password}
          onChangeText={setPassword}
@@ -51,7 +53,7 @@ const Login: React.FC<RegisterScreenProps> = (props) => {
       </View>
 
       <Button 
-       style={styles.submitButton} 
+       style={styles.loginButton} 
        type='primary'
        onPress={Login}
        >
@@ -77,17 +79,21 @@ const styles = StyleSheet.create({
     margin:20,
     height:200
   },
-  emailInput:{
-    borderColor:'#000',
-    borderWidth:1
-  },
-  passwordInput:{
-    marginTop:10,
-    borderColor:'#000',
-    borderWidth:1,
+  text:{
+    fontSize:20,
     marginBottom:10
   },
-  submitButton:{
+  emailInput:{
+    borderColor:'#000',
+    borderWidth:1,
+    marginBottom:15
+  },
+  passwordInput:{
+    borderColor:'#000',
+    borderWidth:1,
+    marginBottom:15
+  },
+  loginButton:{
     width: ScreenWidth-20,
     position:'absolute',
     bottom:10

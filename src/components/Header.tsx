@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { ScreenWidth } from '../functions/Scale';
 
 
 type HeaderProps ={
@@ -32,11 +33,14 @@ const styles = StyleSheet.create({
     title:{
         color:'#fff',
         fontSize:30,
-        fontWeight:'700',
-        marginLeft:55
+        fontWeight:'600',
+        alignSelf:'center',
+        width: ScreenWidth-100,
+        textAlign:'center'
+       // marginLeft:55
     },
     icon:{
-      margin:20
+      margin:20,      
     }
     
 }) 

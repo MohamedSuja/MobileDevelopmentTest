@@ -6,27 +6,27 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../navigation/Types'
 
 
-type HomeScreenProps = NativeStackScreenProps<RootStackParamList,'Home'>
+type ScreenProps = NativeStackScreenProps<RootStackParamList>
 
-const Settings: React.FC<HomeScreenProps> = (props) => {
+const Settings: React.FC<ScreenProps> = (props) => {
   return (
     <View>
-      <Header iconName='chevron-left' title='App Settings' onPress={()=>props.navigation.push('Home')}/>
+      <Header iconName='chevron-left' title='App Settings' onPress={()=>props.navigation.goBack()}/>
       <Button 
        type='ghost'
        style={styles.mainButton}
-       onPress={() => {}}>
+       onPress={() => props.navigation.push('ResetPassword')}>
         Reset Password</Button>
       <Button 
        type='ghost'
        style={styles.mainButton}
-       onPress={() => {}}>
+       onPress={() => props.navigation.push('ResetEmail')}>
         Reset Email </Button>
       <Button 
        type='ghost'
        style={styles.mainButton}
-       onPress={() => {}}>
-        Reset User Name </Button>
+       onPress={() => props.navigation.push('ResetUserInfo')}>
+        Reset User Information </Button>
     </View>
   )
 }
