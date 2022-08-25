@@ -10,7 +10,9 @@ import { ScreenWidth } from '../functions/Scale'
 type ScreenProps = NativeStackScreenProps<RootStackParamList>
 
 const ResetUserInfo: React.FC<ScreenProps> = (props) => {
-  const [name,setName] = useState('')
+  const [firstName,setFirstName] = useState('')
+  const [lastName,setLastName] = useState('')
+
   return (
     <View style={styles.countainer}>
       <Header iconName='chevron-left' title='Reset Email' onPress={()=>props.navigation.goBack()}/>
@@ -18,14 +20,14 @@ const ResetUserInfo: React.FC<ScreenProps> = (props) => {
       <Text style={styles.text}>First Name</Text>
       <TextareaItem        
          placeholder='Enter Your New First Name'
-         value={name}
-         onChangeText={setName}
+         value={firstName}
+         onChangeText={setFirstName}
          style={styles.textInput}/>
       <Text style={styles.text}>Last Name</Text>
       <TextareaItem        
          placeholder='Enter Your New Last Name'
-         value={name}
-         onChangeText={setName}
+         value={lastName}
+         onChangeText={setLastName}
          style={styles.textInput}/>
       </View>
      

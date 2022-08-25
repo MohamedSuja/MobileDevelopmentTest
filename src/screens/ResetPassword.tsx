@@ -11,6 +11,8 @@ type ScreenProps = NativeStackScreenProps<RootStackParamList>
 
 const ResetPassword: React.FC<ScreenProps> = (props) => {
   const [password,setPassword] = useState('')
+  const [newPassword,setNewPassword] = useState('')
+  const [reNewPassword,setReNewPassword] = useState('')
   return (
     <View style={styles.countainer}>
       <Header iconName='chevron-left' title='Reset Password' onPress={()=>props.navigation.goBack()}/>
@@ -26,15 +28,15 @@ const ResetPassword: React.FC<ScreenProps> = (props) => {
       <TextareaItem        
          placeholder='Enter Your New Password'
          secureTextEntry 
-         value={password}
-         onChangeText={setPassword}
+         value={newPassword}
+         onChangeText={setNewPassword}
          style={styles.passwordInput}/>
       <Text style={styles.text}>New Password</Text>
       <TextareaItem        
          placeholder='Reenter Your New Password'
          secureTextEntry 
-         value={password}
-         onChangeText={setPassword}
+         value={reNewPassword}
+         onChangeText={setReNewPassword}
          style={styles.passwordInput}/>
       </View>
       

@@ -15,8 +15,9 @@ type ScreenProps = NativeStackScreenProps<RootStackParamList>
 
 
 const AddCompany: React.FC<ScreenProps> = (props) => {
+  const [companyId,seCompanyId] = useState('')
   const [companyName,seCompanyName] = useState('')
-
+  const [companyLocation,seCompanyLocation] = useState('')
 
 
   return (
@@ -28,8 +29,8 @@ const AddCompany: React.FC<ScreenProps> = (props) => {
         <Text style={styles.text}>Company Id</Text>
         <TextareaItem        
          placeholder='Enter Your Company Id'      
-         value={companyName}
-         onChangeText={seCompanyName}
+         value={companyId}
+         onChangeText={seCompanyId}
          style={styles.textInput}/>
 
         <Text style={styles.text}>Company Name</Text>
@@ -42,8 +43,8 @@ const AddCompany: React.FC<ScreenProps> = (props) => {
         <Text style={styles.text}>Company Location</Text>
          <TextareaItem        
          placeholder='Enter Your Company Location'
-         value={companyName}
-         onChangeText={seCompanyName}
+         value={companyLocation}
+         onChangeText={seCompanyLocation}
          style={styles.textInput}/>
 
         

@@ -11,6 +11,7 @@ type ScreenProps = NativeStackScreenProps<RootStackParamList>
 
 const ResetEmail: React.FC<ScreenProps> = (props) => {
   const [email,setEmail] = useState('')
+  const [newEmail,setNewEmail] = useState('')
   return (
     <View style={styles.countainer}>
       <Header iconName='chevron-left' title='Reset Email' onPress={()=>props.navigation.goBack()}/>
@@ -26,8 +27,8 @@ const ResetEmail: React.FC<ScreenProps> = (props) => {
       <TextareaItem        
          placeholder='Enter Your New Email Address'
          keyboardType='email-address' 
-         value={email}
-         onChangeText={setEmail}
+         value={newEmail}
+         onChangeText={setNewEmail}
          style={styles.emailInput}/>
       </View>
      
