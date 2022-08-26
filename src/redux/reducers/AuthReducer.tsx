@@ -1,11 +1,11 @@
-import * as loginActions from "../constants/authConstants";
+import * as loginActions from "../constants/AuthConstants";
 
 const initialState= {
   loginStatus: "PENDING"
 }
 
 
-export const authReducer = (state = initialState, action: {
+export const AuthReducer = (state = initialState, action: {
   type: string;
   loginStatus: string;
 }) => {

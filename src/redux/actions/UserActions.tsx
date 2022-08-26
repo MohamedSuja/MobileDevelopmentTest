@@ -1,4 +1,4 @@
-import * as loginActions from "../constants/authConstants";
+import * as loginActions from "../constants/AuthConstants";
 
 
 export const LoginForm = (useremail: string, password: string) => {

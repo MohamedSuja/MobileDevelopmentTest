@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react'
 import { Button, Card, Drawer } from '@ant-design/react-native'
 import Header from '../components/Header';
 import store from '../redux/store/Store';
-import { LogOut } from '../redux/actions/userActions';
+import { LogOut } from '../redux/actions/UserActions';
 import Icon from 'react-native-vector-icons/Entypo';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/Types';
