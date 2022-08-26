@@ -1,10 +1,12 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Alert } from 'react-native'
 import React, { useState } from 'react'
 import Header from '../components/Header'
 import { Button, TextareaItem,} from '@ant-design/react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../navigation/Types'
 import { ScreenWidth } from '../functions/Scale'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList>
@@ -13,6 +15,35 @@ const ResetPassword: React.FC<ScreenProps> = (props) => {
   const [password,setPassword] = useState('')
   const [newPassword,setNewPassword] = useState('')
   const [reNewPassword,setReNewPassword] = useState('')
+  const [loading,setLoading] = useState(false)
+
+  const dataAuth = useSelector((props: any) => props.authUser);
+
+  const Update =async () =>{
+    setLoading(true)
+    try {
+      await
+      axios({
+        method: 'put',
+        url: 'https://mobitron1.azurewebsites.net/api/1.0/auth/reset-password',
+        data: {
+          email: dataAuth.email,
+          token: dataAuth.token,
+          password: newPassword == reNewPassword ? newPassword : null
+      }
+      })
+      .then(res=>{
+        setLoading(false)
+        Alert.alert('! Alert','Password successfully changed')        
+      })
+    } catch (e) {
+      setLoading(false)
+      console.log(e);
+      Alert.alert('! Alert',`${e}`)
+      
+    }
+  }
+
   return (
     <View style={styles.countainer}>
       <Header iconName='chevron-left' title='Reset Password' onPress={()=>props.navigation.goBack()}/>
@@ -44,7 +75,7 @@ const ResetPassword: React.FC<ScreenProps> = (props) => {
       <Button 
        style={styles.submitButton} 
        type='primary'
-       
+       onPress={Update}
        >
         Submit</Button>
 

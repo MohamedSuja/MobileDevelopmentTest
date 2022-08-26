@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, StatusBar, TouchableOpacity, FlatList, } from 'react-native'
-import React, { useRef, useState } from 'react'
+import { View, Text, StyleSheet, StatusBar, TouchableOpacity, FlatList, Alert, } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react'
 import { Button, Card, Drawer } from '@ant-design/react-native'
 import Header from '../components/Header';
 import { LogOut, UserForm } from '../redux/actions/UserActions';
@@ -8,13 +8,15 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/Types';
 import FloatingActionButton from '../components/FloatingActionButton';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 
 
 type SettingsScreenProps = NativeStackScreenProps<RootStackParamList,'Settings'>
 
 const Home : React.FC<SettingsScreenProps> = (props) => {
-  const [openDrader,setOpenDrawer] = useState(false);
-
+  const [openDrader,setOpenDrawer] = useState(false)
+  const [loading,setLoading] = useState(false)
+  const [companyList,setCompanyList] = useState([])
   const dispatch=useDispatch()
   
   const LogOutFunction = () =>{    
@@ -23,6 +25,32 @@ const Home : React.FC<SettingsScreenProps> = (props) => {
 
   //All datas coming via redux
   const datas = useSelector((props: any) => props.dataUser);
+
+
+  const getCompany = async () =>{
+    try {
+      await
+      axios({
+        method: 'get',
+        url: 'https://mobitron1.azurewebsites.net/api/1.0/Company/tree',
+      })
+      .then(res=>{
+        setCompanyList(res.data)
+        setLoading(false)              
+      })
+    } catch (e) {
+      setLoading(false)
+      console.log(e);
+      Alert.alert('! Alert',`${e}`)
+      
+    }
+  }
+    useEffect(() => {
+       getCompany();
+
+    }, [])
+
+  
   
   
   const Slidebar = (

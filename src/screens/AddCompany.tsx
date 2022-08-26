@@ -1,15 +1,12 @@
-import { View, Text, StyleSheet ,TextInput, StatusBar, TouchableOpacity, ScrollView} from 'react-native';
+import { View, Text, StyleSheet ,TextInput, StatusBar, TouchableOpacity, ScrollView, Alert} from 'react-native';
 import React, { useState } from 'react';
-
 import { ScreenWidth } from '../functions/Scale';
 import { Button,  TextareaItem } from '@ant-design/react-native';
 import {RootStackParamList} from'../navigation/Types'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import store from '../redux/store/Store';
-import { LoginForm, UserForm } from '../redux/actions/UserActions';
-import Icon from 'react-native-vector-icons/Entypo';
 import Header from '../components/Header';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList>
@@ -19,11 +16,36 @@ const AddCompany: React.FC<ScreenProps> = (props) => {
   const [companyId,seCompanyId] = useState('')
   const [companyName,seCompanyName] = useState('')
   const [companyLocation,seCompanyLocation] = useState('')
+  const [loading,setLoading] = useState(false)
 
-  const dispatch=useDispatch()
 
-  const submit = () =>{
-   
+  
+  
+  const dataAuth = useSelector((props: any) => props.authUser);
+
+  const submit =async () =>{
+    setLoading(true)
+    try {
+      await
+      axios({
+        method: 'post',
+        url: 'https://mobitron1.azurewebsites.net/api/1.0/Company',
+        data: {
+          id: companyId,
+          name: companyName,
+          address: companyLocation
+      }
+      })
+      .then(res=>{
+        setLoading(false)
+        Alert.alert('! Alert','Successfully added')        
+      })
+    } catch (e) {
+      setLoading(false)
+      console.log(e);
+      Alert.alert('! Alert',`${e}`)
+      
+    }
   } 
 
   return (
@@ -61,6 +83,7 @@ const AddCompany: React.FC<ScreenProps> = (props) => {
       
 
       <Button 
+       loading={loading}
        style={styles.submitButton} 
        type='primary'
        onPress={submit}

@@ -1,10 +1,12 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Alert } from 'react-native'
 import React, { useState } from 'react'
 import Header from '../components/Header'
 import { Button, TextareaItem,} from '@ant-design/react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../navigation/Types'
 import { ScreenWidth } from '../functions/Scale'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList>
@@ -12,6 +14,36 @@ type ScreenProps = NativeStackScreenProps<RootStackParamList>
 const ResetUserInfo: React.FC<ScreenProps> = (props) => {
   const [firstName,setFirstName] = useState('')
   const [lastName,setLastName] = useState('')
+  const [loading,setLoading] = useState(false)
+
+  
+  const dataAuth = useSelector((props: any) => props.authUser);
+  const dataUser = useSelector((props: any) => props.dataUser);
+
+  const Update =async () =>{
+    setLoading(true)
+    try {
+      await
+      axios({
+        method: 'put',
+        url: 'https://mobitron1.azurewebsites.net/api/1.0/user',
+        data: {
+          userId: dataAuth.token,
+          firstName: firstName,
+          lastName: lastName
+      }
+      })
+      .then(res=>{
+        setLoading(false)
+        Alert.alert('! Alert','Successfully updated')        
+      })
+    } catch (e) {
+      setLoading(false)
+      console.log(e);
+      Alert.alert('! Alert',`${e}`)
+      
+    }
+  }
 
   return (
     <View style={styles.countainer}>
@@ -34,7 +66,7 @@ const ResetUserInfo: React.FC<ScreenProps> = (props) => {
       <Button 
        style={styles.submitButton} 
        type='primary'
-       
+       onPress={Update}
        >
         Submit</Button>
 

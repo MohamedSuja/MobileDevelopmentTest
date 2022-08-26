@@ -40,8 +40,7 @@ const Login: React.FC<RegisterScreenProps> = (props) => {
         dispatch(LoginForm(email, password,res.data.token)); 
       })
     } catch (e) {
-      console.log(e);
-      
+      console.log(e);      
     }
 
     //dispatch(LoginForm(email, password));    

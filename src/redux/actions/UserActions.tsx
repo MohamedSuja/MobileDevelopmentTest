@@ -20,14 +20,13 @@ export const LogOut = () => {
 };
 
 
-export const UserForm = (firstName: string, lastName: string, email: string, company: any[]) => {
+export const UserForm = (firstName: string, lastName: string, email: string) => {
   return {
     type: loginActions.USER_DATAS,
     payload:{
       firstName:firstName,
       lastName:lastName,
-      email:email,
-      company:company
+      email:email
     }
   };
 };

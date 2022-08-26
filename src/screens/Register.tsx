@@ -1,13 +1,12 @@
-import { View, Text, StyleSheet ,TextInput, StatusBar, TouchableOpacity, ScrollView} from 'react-native';
+import { View, Text, StyleSheet ,TextInput, StatusBar, TouchableOpacity, ScrollView, Alert} from 'react-native';
 import React, { useState } from 'react';
-
 import { ScreenWidth } from '../functions/Scale';
 import { Button,  TextareaItem } from '@ant-design/react-native';
 import {RootStackParamList} from'../navigation/Types'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import store from '../redux/store/Store';
 import { LoginForm } from '../redux/actions/UserActions';
 import Icon from 'react-native-vector-icons/Entypo';
+import axios from 'axios';
 
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList>
@@ -18,11 +17,35 @@ const Register: React.FC<ScreenProps> = (props) => {
   const [lastName,setLastName] = useState('')
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
+  const [loading,setLoading] = useState(false)
 
-  const { dispatch } = store;
-  const register = (event: React.SyntheticEvent) =>{
-    event.preventDefault();
-    dispatch(LoginForm(email, password));
+ 
+  const register =async () =>{   
+    setLoading(true)
+    try {
+      await
+      axios({
+        method: 'put',
+        url: 'https://mobitron1.azurewebsites.net/api/1.0/User',
+        data: {
+           firstName: firstName,
+           lastName: lastName,
+           email: email,
+           password: password
+      }
+      })
+      .then(res=>{
+        setLoading(false)
+        Alert.alert('! Alert','Password successfully registered')   
+        props.navigation.goBack()     
+      })
+    } catch (e) {
+      setLoading(false)
+      console.log(e);
+      Alert.alert('! Alert',`${e}`)
+      
+    }
+ 
   }
 
   
@@ -71,9 +94,10 @@ const Register: React.FC<ScreenProps> = (props) => {
       
 
       <Button 
+       loading={loading}
        style={styles.submitButton} 
        type='primary'
-    
+       onPress={register}
        >
         SignUp</Button>
      

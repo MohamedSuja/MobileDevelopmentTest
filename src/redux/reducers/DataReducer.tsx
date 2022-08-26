@@ -3,8 +3,7 @@ import * as loginActions from "../constants/AuthConstants";
 const initialState= {  
   firstName: '',
   lastName:'',
-  email:'',
-  company:[]
+  email:''
 }
 
 
