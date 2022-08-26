@@ -1,2 +1,2 @@
 export const LOGIN_STATUS: string = "loginStatus";
-export const LOGIN_SUCCESS: string = "loginSuccess";
+export const USER_DATAS: string = "userDatas";

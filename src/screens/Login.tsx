@@ -7,6 +7,7 @@ import {RootStackParamList} from'../navigation/Types'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoginForm } from '../redux/actions/UserActions';
+import axios from 'axios';
 //import { LoginForm } from '../redux/actions/UserActions';
 
 type RegisterScreenProps = NativeStackScreenProps<RootStackParamList,'Register'>
@@ -16,10 +17,38 @@ const Login: React.FC<RegisterScreenProps> = (props) => {
 
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
+  const [loading,setLoading] = useState(false)
 
+
+  //this part is api connect
   const dispatch=useDispatch()
-  const Login = () =>{
-    dispatch(LoginForm(email, password));    
+  const Login =async () =>{
+    setLoading(true)
+    try {
+      await
+      axios({
+        method: 'post',
+        url: 'https://fakestoreapi.com/auth/login',
+        data: {
+          username: "mor_2314",
+          password: "83r5^_"
+      }
+      })
+      .then(res=>{
+        console.log(res.data.token);
+        setLoading(false)
+        dispatch(LoginForm(email, password,res.data.token)); 
+      })
+    } catch (e) {
+      console.log(e);
+      
+    }
+
+    //dispatch(LoginForm(email, password));    
+  }
+
+  const Login2 = () =>{ 
+    dispatch(LoginForm(email, password,'token'));    
   }
 
 
@@ -56,6 +85,7 @@ const Login: React.FC<RegisterScreenProps> = (props) => {
       </View>
 
       <Button 
+      loading={loading}
        style={styles.loginButton} 
        type='primary'
        onPress={Login}

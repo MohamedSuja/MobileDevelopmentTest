@@ -2,13 +2,12 @@ import { View, Text, StyleSheet, StatusBar, TouchableOpacity, FlatList, } from '
 import React, { useRef, useState } from 'react'
 import { Button, Card, Drawer } from '@ant-design/react-native'
 import Header from '../components/Header';
-import store from '../redux/store/Store';
-import { LogOut } from '../redux/actions/UserActions';
+import { LogOut, UserForm } from '../redux/actions/UserActions';
 import Icon from 'react-native-vector-icons/Entypo';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/Types';
 import FloatingActionButton from '../components/FloatingActionButton';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 type SettingsScreenProps = NativeStackScreenProps<RootStackParamList,'Settings'>
@@ -22,6 +21,9 @@ const Home : React.FC<SettingsScreenProps> = (props) => {
     dispatch(LogOut());
   }
 
+  //All datas coming via redux
+  const datas = useSelector((props: any) => props.dataUser);
+  
   
   const Slidebar = (
     <View style={styles.drawerContainer}>
@@ -63,12 +65,10 @@ const Home : React.FC<SettingsScreenProps> = (props) => {
       <StatusBar translucent={true} backgroundColor={'transparent'} />
       <Header iconName='navicon' title='Home' onPress={()=>setOpenDrawer(true)}/>     
       
-      {/* <Button onPress={LogOutFunction}>
-        test
-      </Button> */}
+     
       {/* <FlatList 
         numColumns={1}
-        data={data}
+        data={data.company}
         renderItem={({})=>()}
       /> */}
       <Card>          

@@ -6,9 +6,10 @@ import { Button,  TextareaItem } from '@ant-design/react-native';
 import {RootStackParamList} from'../navigation/Types'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import store from '../redux/store/Store';
-import { LoginForm } from '../redux/actions/UserActions';
+import { LoginForm, UserForm } from '../redux/actions/UserActions';
 import Icon from 'react-native-vector-icons/Entypo';
 import Header from '../components/Header';
+import { useDispatch } from 'react-redux';
 
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList>
@@ -19,6 +20,11 @@ const AddCompany: React.FC<ScreenProps> = (props) => {
   const [companyName,seCompanyName] = useState('')
   const [companyLocation,seCompanyLocation] = useState('')
 
+  const dispatch=useDispatch()
+
+  const submit = () =>{
+   
+  } 
 
   return (
     <View  style={styles.container}> 
@@ -57,7 +63,7 @@ const AddCompany: React.FC<ScreenProps> = (props) => {
       <Button 
        style={styles.submitButton} 
        type='primary'
-
+       onPress={submit}
        >
         Submit</Button>
      
