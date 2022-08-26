@@ -22,6 +22,7 @@ const Home : React.FC<SettingsScreenProps> = (props) => {
     dispatch(LogOut());
   }
 
+  
   const Slidebar = (
     <View style={styles.drawerContainer}>
       <View style={styles.profileContainer}>

@@ -14,7 +14,6 @@ type RegisterScreenProps = NativeStackScreenProps<RootStackParamList,'Register'>
 
 const Login: React.FC<RegisterScreenProps> = (props) => {
 
-  
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
 

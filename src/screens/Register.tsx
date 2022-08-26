@@ -25,6 +25,7 @@ const Register: React.FC<ScreenProps> = (props) => {
     dispatch(LoginForm(email, password));
   }
 
+  
   return (
     <View  style={styles.container}>
        <StatusBar translucent={false} />
