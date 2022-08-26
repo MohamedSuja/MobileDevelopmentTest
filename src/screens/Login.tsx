@@ -28,6 +28,7 @@ const Login: React.FC<RegisterScreenProps> = (props) => {
       await
       axios({
         method: 'post',
+        // Swagger api is return 401 error code ony so i add this api link for login test demo
         url: 'https://fakestoreapi.com/auth/login',
         data: {
           username: "mor_2314",

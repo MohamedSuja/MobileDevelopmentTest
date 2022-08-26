@@ -41,7 +41,7 @@ const Home : React.FC<SettingsScreenProps> = (props) => {
     } catch (e) {
       setLoading(false)
       console.log(e);
-      Alert.alert('! Alert',`${e}`)
+     // Alert.alert('! Alert',`${e}`)
       
     }
   }
