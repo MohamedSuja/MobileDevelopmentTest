@@ -1,17 +1,19 @@
-import * as loginActions from "../constants/UserConstants";
+import * as loginActions from "../constants/authConstants";
 
-export default function AuthReducer(
-  state = { loginStatus: "PENDING" },
-  action: {
-    type: string;
-    loginStatus: string;
-  }
-): { loginStatus: string } {
+const initialState= {
+  loginStatus: "PENDING"
+}
+
+
+export const authReducer = (state = initialState, action: {
+  type: string;
+  loginStatus: string;
+}) => {
   switch (action.type) {
     case loginActions.LOGIN_STATUS:
       return {
         ...state,
-        loginStatus: action.loginStatus,
+        loginStatus: action.loginStatus ,
       };
     default:
       return state;

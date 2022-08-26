@@ -6,7 +6,7 @@ import { Button,  TextareaItem } from '@ant-design/react-native';
 import {RootStackParamList} from'../navigation/Types'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import store from '../redux/store/Store';
-import { LoginForm } from '../redux/actions/UserActions';
+import { LoginForm } from '../redux/actions/userActions';
 import Icon from 'react-native-vector-icons/Entypo';
 
 

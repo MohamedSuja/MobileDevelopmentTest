@@ -6,7 +6,8 @@ import { Button, TextareaItem } from '@ant-design/react-native';
 import {RootStackParamList} from'../navigation/Types'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import store from '../redux/store/Store';
-import { LoginForm } from '../redux/actions/UserActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { LoginForm } from '../redux/actions/userActions';
 
 type RegisterScreenProps = NativeStackScreenProps<RootStackParamList,'Register'>
 
@@ -15,12 +16,13 @@ const Login: React.FC<RegisterScreenProps> = (props) => {
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
 
-  const { dispatch } = store;
-  const Login = (event: React.SyntheticEvent) =>{
-    event.preventDefault();
-    dispatch(LoginForm(email, password));
+  const dispatch=useDispatch()
+  const Login = () =>{
+    dispatch(LoginForm(email, password));    
   }
 
+
+  
   return (
     <View  style={styles.container}>
        <StatusBar translucent={false} />

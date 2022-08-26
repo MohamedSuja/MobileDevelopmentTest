@@ -3,11 +3,12 @@ import React, { useRef, useState } from 'react'
 import { Button, Card, Drawer } from '@ant-design/react-native'
 import Header from '../components/Header';
 import store from '../redux/store/Store';
-import { LogOut } from '../redux/actions/UserActions';
+import { LogOut } from '../redux/actions/userActions';
 import Icon from 'react-native-vector-icons/Entypo';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/Types';
 import FloatingActionButton from '../components/FloatingActionButton';
+import { useDispatch } from 'react-redux';
 
 
 type SettingsScreenProps = NativeStackScreenProps<RootStackParamList,'Settings'>
@@ -15,9 +16,9 @@ type SettingsScreenProps = NativeStackScreenProps<RootStackParamList,'Settings'>
 const Home : React.FC<SettingsScreenProps> = (props) => {
   const [openDrader,setOpenDrawer] = useState(false);
 
-  const { dispatch } = store;
-  const LogOutFunction = (event: React.SyntheticEvent) =>{
-    event.preventDefault();
+  const dispatch=useDispatch()
+  
+  const LogOutFunction = () =>{    
     dispatch(LogOut());
   }
 

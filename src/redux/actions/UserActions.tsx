@@ -1,4 +1,4 @@
-import * as loginActions from "../constants/UserConstants";
+import * as loginActions from "../constants/authConstants";
 
 
 export const LoginForm = (useremail: string, password: string) => {
@@ -14,6 +14,6 @@ export const LoginForm = (useremail: string, password: string) => {
 export const LogOut = () => {
   return {
     type: loginActions.LOGIN_STATUS,
-    loginStatus:"FAILED",
+    loginStatus:"LogOut",
   };
 };

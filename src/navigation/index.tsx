@@ -11,7 +11,8 @@ interface loginProps {
 
 const RootNavigation = () => {
 
-  const { loginStatus } = useSelector((props: loginProps) => props);
+  const { loginStatus } = useSelector((props: any) => props.authUser);
+  console.log(loginStatus);
     
   return (
     <NavigationContainer>
